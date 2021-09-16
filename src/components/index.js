@@ -1,4 +1,6 @@
 //getting all components together here//
-export { default as home } from "./home.jsx";
-export { default as activities } from "./activities";
-export { default as routines } from "./routines";
+export { default as Home } from "./Home.jsx";
+export { default as Activities } from "./Activities";
+export { default as Routines } from "./Routines";
+export { default as Register } from "./Register";
+export { default as Login } from "./Login";
