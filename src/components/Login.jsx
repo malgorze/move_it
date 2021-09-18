@@ -40,8 +40,9 @@ const Login = (props) => {
     } else {
       setLoginSuccess(false);
       setLoginFailure(true);
-    }
-  };
+      }
+    };
+  }
 
   return (
     <div className="logins">
