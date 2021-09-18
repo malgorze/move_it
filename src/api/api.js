@@ -17,8 +17,9 @@ export const registerUser = async (username, password) => {
     body: JSON.stringify(body),
   };
   try {
-    const fetchResult = await fetch(`${apiPath}api/users/register`, config);
+    const fetchResult = await fetch(`${apiPath}users/register`, config);
     const json = await fetchResult.json();
+    console.log(json);
     return json;
   } catch (error) {
     throw error;
@@ -46,7 +47,23 @@ export const loginUser = async (username, password) => {
   }
 };
 
-export const getUsersRoutines = async (username, token = null) => {
+export const getUserData = async (token) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  try {
+    const fetchResult = await fetch(`${apiPath}users/me`, config);
+    const json = await fetchResult.json();
+    return json;
+  } catch (error) {
+    throw (error);
+  }
+}
+
+export const getUserRoutines = async (username, token = null) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -56,6 +73,87 @@ export const getUsersRoutines = async (username, token = null) => {
   try {
     const fetchResult = await fetch(
       `${apiPath}users/${username}/routines`,
+      config
+    );
+    const json = await fetchResult.json();
+    return json;
+  } catch (error) {
+    throw error;
+  }
+};
+
+// ACTIVITIES
+// --------------------------------------------------------------
+
+export const getAllActivities = async () => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  try {
+    const fetchResult = await fetch(`${apiPath}activities`, config);
+    const json = await fetchResult.json();
+    return json;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const createActivity = async (name, description) => {
+  const body = {
+    name,
+    description,
+  };
+  const config = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  };
+  try {
+    const fetchResult = await fetch(`${apiPath}activities`, config);
+    const json = await fetchResult.json();
+    return json;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateActivity = async (activityId, name, description) => {
+  const body = {
+    name,
+    description,
+  };
+  const config = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  };
+  try {
+    const fetchResult = await fetch(
+      `${apiPath}activities/${activityId}`,
+      config
+    );
+    const json = await fetchResult.json();
+    return json;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getAllRoutinesForActivity = async (activityId) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  try {
+    const fetchResult = await fetch(
+      `${apiPath}activities/${activityId}/routines`,
       config
     );
     const json = await fetchResult.json();
