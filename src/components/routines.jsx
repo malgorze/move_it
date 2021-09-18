@@ -7,6 +7,7 @@ const Routines = (props) => {
   const [userData, setUserData] = useState();
   const [token, updateToken] = useState({});
 
+
   useEffect(() => {
     async function fetchRoutines() {
       const localToken =
