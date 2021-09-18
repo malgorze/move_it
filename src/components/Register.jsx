@@ -18,7 +18,7 @@ const Register = (props) => {
     if (registerResponse.success) {
       setRegisterSuccess(true);
       setRegisterFailure(false);
-      setIsLoggedIn(true); /*FROM PROPS*/
+      // setIsLoggedIn(true); /*FROM PROPS*/commented out to npm start the app as it created crash/error/
       const {
         data: { token },
       } = registerResponse;
@@ -31,7 +31,7 @@ const Register = (props) => {
   };
 
   return (
-    <div>
+    <div className="logins">
       <h2>Sign up here!</h2>
       <form onSubmit={registerSubmitHandler}>
         <input
@@ -59,7 +59,7 @@ const Register = (props) => {
           /*On failure, do abc. On success, do xyz*/
           <p>Sorry, but that username already exists. Please try again.</p>
         )}
-        {registerSuccess && <p>Welcome to Move It!</p>}
+        {registerSuccess && <p>Welcome to Move It ${username}!</p>}
       </form>
     </div>
   );
