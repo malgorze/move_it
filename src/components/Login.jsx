@@ -9,6 +9,7 @@ const Login = (props) => {
   const [password, setPassword] = useState(null);
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [loginFailure, setLoginFailure] = useState(false);
+  const [body, setBody] = useState({});
 
   let history = useHistory();
 
@@ -19,6 +20,8 @@ const Login = (props) => {
   const loginSubmitHandler = async (event) => {
     event.preventDefault();
     const loginResult = await loginUser(username, password);
+    setBody(loginResult);
+    console.log(loginResult);
     if (loginResult.success) {
       setLoginSuccess(true);
       setLoginFailure(false);
@@ -33,7 +36,7 @@ const Login = (props) => {
         window.location.href = "/home";
         // setIsLoggedIn(true);
         // Any other actions once user is logged in?
-      }
+        localStorage.setItem("MoveItToken", stringToken);
     } else {
       setLoginSuccess(false);
       setLoginFailure(true);
@@ -61,12 +64,9 @@ const Login = (props) => {
           }}
         />
         <button type="submit">Login</button>
-        {loginFailure && (
-          <p style={{ color: "red" }}>
-            Incorrect username/password. Please try again.
-          </p>
-        )}
-        {loginSuccess && <p>Welcome back {username}!</p>}
+        <p>{body.message}</p>
+        {loginSuccess && <p>Welcome back ${username}!</p>}
+
       </form>
     </div>
   );
