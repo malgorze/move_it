@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { getAllPublicRoutines } from '../api/api';
 
@@ -31,6 +30,5 @@ const Routines = (props) => {
         */
     )
 }
-
 
 export default Routines;
