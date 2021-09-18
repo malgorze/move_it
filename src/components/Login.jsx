@@ -19,13 +19,13 @@ const Login = (props) => {
     if (loginResult.success) {
       setLoginSuccess(true);
       setLoginFailure(false);
-      setIsLoggedIn(true);
+      // setIsLoggedIn(true);
       const {
         data: { token },
       } = loginResult;
       const stringToken = JSON.stringify(token);
       if (token) {
-        setIsLoggedIn(true);
+        // setIsLoggedIn(true);
         // Any other actions once user is logged in?
       }
       localStorage.setItem("MoveItToken", stringToken);
@@ -36,8 +36,8 @@ const Login = (props) => {
   };
 
   return (
-    <div>
-      <h2> Log in here:</h2>
+    <div className="logins">
+      <h2>Log in here:</h2>
       <form onSubmit={loginSubmitHandler}>
         <input
           type="text"
@@ -57,11 +57,11 @@ const Login = (props) => {
         />
         <button type="submit">Login</button>
         {loginFailure && (
-            <p style={{ color: "red" }}>
-              Incorrect username/password. Please try again.
-            </p>
+          <p style={{ color: "red" }}>
+            Incorrect username/password. Please try again.
+          </p>
         )}
-        {loginSuccess && (<p>Welcome back!</p>)}
+        {loginSuccess && <p>Welcome back ${username}!</p>}
       </form>
     </div>
   );

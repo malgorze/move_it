@@ -1,3 +1,30 @@
+body {
+  background-color: white;
+  color: #172b4d;
+  font-family: zeitung-micro, sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+h1 {
+  color: #5e72e4;
+  font-family: bc-alphapipe, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  margin-left: 350px;
+  margin-top: 100px;
+  font-size: xx-large;
+}
+
+h2 {
+  color: #5e72e4;
+  font-family: bc-alphapipe, sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  margin-top: 100px;
+  font-size: xx-large;
+}
+
 .App {
   text-align: center;
 }
@@ -26,6 +53,64 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.navbar {
+  width: 250px;
+  height: 100%;
+  padding-top: 150px;
+  padding-left: 35px;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  border-right: 1px solid #5e72e4;
+}
+
+.navbar button {
+  height: 45px;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: transparent;
+  color: #fb6340;
+  font-family: zeitung-micro, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: medium;
+  border: none;
+}
+
+.navbar button:hover {
+  color: #5e72e4;
+}
+
+.logins {
+  font-family: zeitung-micro, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin-left: 350px;
+}
+
+.logins form {
+  font-family: zeitung-micro, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  margin-top: 200px;
+  margin-left: 200px;
+  display: block;
+  max-width: min-content;
+}
+
+.logins input {
+  font-family: zeitung-micro, sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  width: 200px;
+  height: 50px;
+  background-color: lightgray;
+  border: 1px solid #fb6340;
 }
 
 @keyframes App-logo-spin {
