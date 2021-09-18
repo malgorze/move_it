@@ -8,6 +8,7 @@ const Login = (props) => {
   const [password, setPassword] = useState(null);
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [loginFailure, setLoginFailure] = useState(false);
+  const [body, setBody] = useState({});
 
   /* Set up useEffect in App.jsx to check for JWT in localstorage and set isLoggedIn.
  Pass isLoggedIn and setIsLoggedIn to Login as props.
@@ -16,6 +17,8 @@ const Login = (props) => {
   const loginSubmitHandler = async (event) => {
     event.preventDefault();
     const loginResult = await loginUser(username, password);
+    setBody(loginResult);
+    console.log(loginResult);
     if (loginResult.success) {
       setLoginSuccess(true);
       setLoginFailure(false);
@@ -27,8 +30,9 @@ const Login = (props) => {
       if (token) {
         // setIsLoggedIn(true);
         // Any other actions once user is logged in?
+        localStorage.setItem("MoveItToken", stringToken);
       }
-      localStorage.setItem("MoveItToken", stringToken);
+      
     } else {
       setLoginSuccess(false);
       setLoginFailure(true);
@@ -56,11 +60,7 @@ const Login = (props) => {
           }}
         />
         <button type="submit">Login</button>
-        {loginFailure && (
-          <p style={{ color: "red" }}>
-            Incorrect username/password. Please try again.
-          </p>
-        )}
+        <p>{body.message}</p>
         {loginSuccess && <p>Welcome back ${username}!</p>}
       </form>
     </div>

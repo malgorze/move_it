@@ -17,8 +17,9 @@ export const registerUser = async (username, password) => {
     body: JSON.stringify(body),
   };
   try {
-    const fetchResult = await fetch(`${apiPath}api/users/register`, config);
+    const fetchResult = await fetch(`${apiPath}users/register`, config);
     const json = await fetchResult.json();
+    console.log(json);
     return json;
   } catch (error) {
     throw error;
@@ -46,7 +47,23 @@ export const loginUser = async (username, password) => {
   }
 };
 
-export const getUsersRoutines = async (username, token = null) => {
+export const getUserData = async (token) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  try {
+    const fetchResult = await fetch(`${apiPath}users/me`, config);
+    const json = await fetchResult.json();
+    return json;
+  } catch (error) {
+    throw (error);
+  }
+}
+
+export const getUserRoutines = async (username, token = null) => {
   const config = {
     headers: {
       "Content-Type": "application/json",
