@@ -65,6 +65,87 @@ export const getUsersRoutines = async (username, token = null) => {
   }
 };
 
+// ACTIVITIES
+// --------------------------------------------------------------
+
+export const getAllActivities = async () => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  try {
+    const fetchResult = await fetch(`${apiPath}activities`, config);
+    const json = await fetchResult.json();
+    return json;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const createActivity = async (name, description) => {
+  const body = {
+    name,
+    description,
+  };
+  const config = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  };
+  try {
+    const fetchResult = await fetch(`${apiPath}activities`, config);
+    const json = await fetchResult.json();
+    return json;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const updateActivity = async (activityId, name, description) => {
+  const body = {
+    name,
+    description,
+  };
+  const config = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  };
+  try {
+    const fetchResult = await fetch(
+      `${apiPath}activities/${activityId}`,
+      config
+    );
+    const json = await fetchResult.json();
+    return json;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getAllRoutinesForActivity = async (activityId) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  try {
+    const fetchResult = await fetch(
+      `${apiPath}activities/${activityId}/routines`,
+      config
+    );
+    const json = await fetchResult.json();
+    return json;
+  } catch (error) {
+    throw error;
+  }
+};
+
 // ROUTINES --------------------------------------------------------------
 
 export const getAllPublicRoutines = async () => {
