@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getAllPublicRoutines, getUserRoutines, getUserData } from "../api/api";
+import NewRoutine from "./NewRoutine";
 
 const Routines = (props) => {
   const [allRoutines, setAllRoutines] = useState([]);
@@ -10,6 +11,7 @@ const Routines = (props) => {
 
   useEffect(() => {
     async function fetchRoutines() {
+      
       const localToken =
         JSON.parse(localStorage.getItem("MoveItToken")) ?? null;
 
@@ -18,21 +20,22 @@ const Routines = (props) => {
       const currentRoutines = await getAllPublicRoutines();
       setAllRoutines(currentRoutines);
 
-      if (token) {
-        const currentUserData = await getUserData(token);
+      if (localToken) {
+        const currentUserData = await getUserData(localToken);
         setUserData(currentUserData);
 
         const currentUserRoutines = await getUserRoutines(
           currentUserData.username,
-          token
+          localToken
         );
+        console.log(localToken);
         setUserRoutines(currentUserRoutines);
       }
     }
     fetchRoutines();
   }, []);
 
-  if (!allRoutines) {
+  if (!allRoutines || !userRoutines) {
     return <h1>Loading Routines...</h1>;
   }
 
@@ -42,6 +45,7 @@ const Routines = (props) => {
         edit, and delete routines.
         */
     <div>
+      {token && <NewRoutine />}
       {/* div for all public routines, mapping routine and activity data */}
       <div>
         <h1>All Routines</h1>
@@ -70,7 +74,7 @@ const Routines = (props) => {
         ))}
       </div>
       {/* div for all of the logged-in user's routines */}
-      {/* <div>
+      <div>
         {userData && <h1>{userData.username}'s Routines</h1>}
         {userData &&
           userRoutines.map((routine) => (
@@ -95,7 +99,7 @@ const Routines = (props) => {
                 ))}
             </div>
           ))}
-      </div> */}
+      </div>
     </div>
   );
 };
