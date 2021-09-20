@@ -28,6 +28,9 @@ const UserRoutines = ({userData, userRoutines}) => (
                 <Link to={{
                     pathname: `/routines/edit/${routine.id}`
                 }}>Edit/Delete Routine</Link>
+                <Link to={{
+                    pathname: `/routines/${routine.id}/activities`
+                }}>Add Activity</Link>
             </div>
           ))}
       </div>

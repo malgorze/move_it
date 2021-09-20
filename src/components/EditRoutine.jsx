@@ -98,7 +98,7 @@ const EditRoutine = ({ match }) => {
   }
 
   return (
-    <div class="updateForm">
+    <div>
       <form onSubmit={submitHandler}>
         <label>
           Routine Name:
