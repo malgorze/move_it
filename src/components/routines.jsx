@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getAllPublicRoutines, getUserRoutines, getUserData } from "../api/api";
+import AllRoutines from "./AllRoutines";
 import NewRoutine from "./NewRoutine";
+import UserRoutines from "./UserRoutines";
 
 const Routines = (props) => {
   const [allRoutines, setAllRoutines] = useState([]);
@@ -46,60 +48,9 @@ const Routines = (props) => {
         */
     <div>
       {token && <NewRoutine />}
-      {/* div for all public routines, mapping routine and activity data */}
-      <div>
-        <h1>All Routines</h1>
-        {allRoutines.map((routine) => (
-          <div key={routine.id}>
-            <h3>{routine.name}</h3>
-            <p>Goal: {routine.goal}</p>
-            <p>Created By: {routine.creatorName}</p>
-            {routine.activities[0] && <h5>Activities</h5>}
-            {routine.activities &&
-              routine.activities.map((activity) => (
-                <>
-                  <ul>{activity.name}</ul>
-                  <li>Description: {activity.description}</li>
-                  <li>
-                    Duration: {activity.duration}{" "}
-                    {activity.duration === 1 ? "minute" : "minutes"}
-                  </li>
-                  <li>
-                    Count: {activity.count}{" "}
-                    {activity.count === 1 ? "rep" : "reps"}
-                  </li>
-                </>
-              ))}
-          </div>
-        ))}
-      </div>
+      <AllRoutines allRoutines={allRoutines}/>
       {/* div for all of the logged-in user's routines */}
-      <div>
-        {userData && <h1>{userData.username}'s Routines</h1>}
-        {userData &&
-          userRoutines.map((routine) => (
-            <div key={routine.id}>
-              <h3>{routine.name}</h3>
-              <p>Goal: {routine.goal}</p>
-              {routine.activities[0] && <h5>Activities</h5>}
-              {routine.activities &&
-                routine.activities.map((activity) => (
-                  <>
-                    <ul>{activity.name}</ul>
-                    <li>Description: {activity.description}</li>
-                    <li>
-                      Duration: {activity.duration}{" "}
-                      {activity.duration === 1 ? "minute" : "minutes"}
-                    </li>
-                    <li>
-                      Count: {activity.count}{" "}
-                      {activity.count === 1 ? "rep" : "reps"}
-                    </li>
-                  </>
-                ))}
-            </div>
-          ))}
-      </div>
+      <UserRoutines userData={userData} userRoutines={userRoutines}/>
     </div>
   );
 };
