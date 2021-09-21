@@ -24,7 +24,6 @@ const EditRoutine = ({ match }) => {
       const localToken =
         JSON.parse(localStorage.getItem("MoveItToken")) ?? null;
       setToken(localToken);
-      console.log(localToken);
       try {
         if (localToken) {
           const currentUserData = await getUserData(localToken);
@@ -130,7 +129,9 @@ const EditRoutine = ({ match }) => {
         <button type="submit">Update Routine</button>
         {updateSuccess && <Redirect to="/routines" />}
       </form>
-      <button type="button" onClick={deleteHandler}>Delete Routine</button>
+      <button type="button" onClick={deleteHandler}>
+        Delete Routine
+      </button>
       {updateSuccess && <Redirect to="/routines" />}
     </div>
   );

@@ -10,10 +10,8 @@ const Routines = (props) => {
   const [userData, setUserData] = useState();
   const [token, updateToken] = useState({});
 
-
   useEffect(() => {
     async function fetchRoutines() {
-      
       const localToken =
         JSON.parse(localStorage.getItem("MoveItToken")) ?? null;
 
@@ -48,9 +46,9 @@ const Routines = (props) => {
         */
     <div>
       {token && <NewRoutine />}
-      <AllRoutines allRoutines={allRoutines}/>
+      <AllRoutines allRoutines={allRoutines} />
       {/* div for all of the logged-in user's routines */}
-      <UserRoutines userData={userData} userRoutines={userRoutines}/>
+      <UserRoutines userData={userData} userRoutines={userRoutines} />
     </div>
   );
 };

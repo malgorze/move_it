@@ -1,7 +1,7 @@
 import "./App.css";
 import React from "react";
 import { Switch, Link, Route } from "react-router-dom";
-import { Home, Activities, Routines, Login, Register, EditRoutine, AddActivity } from "./components";
+import { Home, Activities, Routines, Login, Register, EditRoutine, AddActivity, EditActivityOnRoutine } from "./components";
 // import { userList } from "./api/index";
 function App() {
   return (
@@ -28,6 +28,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route path="/activities" component={Activities} />
           <Route path="/routines/:routineId/activities" component={AddActivity} />
+          <Route path="/routine_activities/edit/:routineActivityId" component={EditActivityOnRoutine} />
           <Route path="/routines/edit/:routineId" component={EditRoutine} />
           <Route path="/routines" component={Routines} />
           <Route path="/login" component={Login} />

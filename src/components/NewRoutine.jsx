@@ -25,32 +25,33 @@ const NewRoutine = () => {
 
   return (
     <form onSubmit={submitHandler}>
-          <label>Routine Name:
-          <input
-            type="text"
-            onChange={(event) => {
-              event.preventDefault();
-              setName(event.target.value);
-            }}
-          />
-          </label>
-          <label>Goal:</label>
-          <input
-            type="text"
-            onChange={(event) => {
-              event.preventDefault();
-              setGoal(event.target.value);
-            }}
-          />
-          <label>Make Public:</label>
-          <input
-            type="checkbox"
-            onChange={(event) => {
-              event.preventDefault();
-              setIsPublic(event.target.value);
-            }}
-          />
-          <button type="submit">Create Routine</button>
+      <label>
+        Routine Name:
+        <input
+          type="text"
+          onChange={(event) => {
+            event.preventDefault();
+            setName(event.target.value);
+          }}
+        />
+      </label>
+      <label>Goal:</label>
+      <input
+        type="text"
+        onChange={(event) => {
+          event.preventDefault();
+          setGoal(event.target.value);
+        }}
+      />
+      <label>Make Public:</label>
+      <input
+        type="checkbox"
+        onChange={(event) => {
+          event.preventDefault();
+          setIsPublic(event.target.value);
+        }}
+      />
+      <button type="submit">Create Routine</button>
     </form>
   );
 };
