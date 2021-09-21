@@ -13,7 +13,7 @@ const Routines = (props) => {
   useEffect(() => {
     async function fetchRoutines() {
       const localToken =
-        JSON.parse(localStorage.getItem("MoveItToken")) ?? null;
+        JSON.parse(localStorage.getItem("moveItToken")) ?? null;
 
       updateToken(localToken);
 

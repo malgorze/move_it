@@ -12,8 +12,6 @@ const Login = (props) => {
   const [loginFailure, setLoginFailure] = useState(false);
   const [body, setBody] = useState({});
 
-  // let history = useHistory();
-
   /* Set up useEffect in App.jsx to check for JWT in localstorage and set isLoggedIn.
  Pass isLoggedIn and setIsLoggedIn to Login as props.
  */
@@ -26,16 +24,11 @@ const Login = (props) => {
     if (loginResult.message === "you're logged in!") {
       setLoginSuccess(true);
       setLoginFailure(false);
-      // setIsLoggedIn(true);
       const { token } = loginResult;
       const stringToken = JSON.stringify(token);
       if (token) {
-        localStorage.setItem("MoveItToken", stringToken);
+        localStorage.setItem("moveItToken", stringToken);
         console.log(stringToken);
-        // history.push("/home");
-        // window.location.href = "/home";
-        // setIsLoggedIn(true);
-        // Any other actions once user is logged in?
       } else {
         setLoginSuccess(false);
         setLoginFailure(true);

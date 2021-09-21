@@ -22,7 +22,7 @@ const EditRoutine = ({ match }) => {
   useEffect(() => {
     async function fetchData() {
       const localToken =
-        JSON.parse(localStorage.getItem("MoveItToken")) ?? null;
+        JSON.parse(localStorage.getItem("moveItToken")) ?? null;
       setToken(localToken);
       try {
         if (localToken) {

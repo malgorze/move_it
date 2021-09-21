@@ -1,7 +1,7 @@
 import React from "react";
 
 const Home = () => {
-  const localToken = JSON.parse(localStorage.getItem("MoveItToken"));
+  const localToken = JSON.parse(localStorage.getItem("moveItToken"));
   
   return (
     <div>

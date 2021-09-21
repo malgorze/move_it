@@ -1,6 +1,6 @@
 // API --------------------------------------------------------------
 
-const apiPath = "http://fitnesstrac-kr.herokuapp.com/api/";
+const apiPath = "https://fitnesstrac-kr.herokuapp.com/api/";
 
 // USERS --------------------------------------------------------------
 
