@@ -4,6 +4,10 @@ import { Switch, Link, Route } from "react-router-dom";
 import { Home, Activities, Routines, Login, Register, EditRoutine, AddActivity, EditActivityOnRoutine } from "./components";
 // import { userList } from "./api/index";
 function App() {
+  const logOut = () => {
+    localStorage.removeItem("MoveItToken");
+    window.location.href = "/";
+  };
   return (
     <div>
       <div className="navbar">
@@ -21,6 +25,9 @@ function App() {
         </Link>
         <Link to="/register">
           <button>Register</button>
+        </Link>
+        <Link to="/">
+          <button onClick={logOut}>Log Out</button>
         </Link>
       </div>
       <div>
