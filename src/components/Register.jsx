@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import { registerUser } from "../api/api";
 
 const Register = (props) => {
@@ -6,6 +7,8 @@ const Register = (props) => {
   const [password, setPassword] = useState(null);
   const [registerSuccess, setRegisterSuccess] = useState(false);
   const [registerFailure, setRegisterFailure] = useState(false);
+  const [body, setBody] = useState({});
+
 
   /* Set up useEffect in App.jsx to check for JWT in localstorage and set isLoggedIn.
  Pass isLoggedIn and setIsLoggedIn to Register as props.
@@ -14,20 +17,17 @@ const Register = (props) => {
   const registerSubmitHandler = async (event) => {
     event.preventDefault();
     const registerResponse = await registerUser(username, password);
+    setBody(registerResponse);
 
-    if (registerResponse.success) {
+    if (registerResponse.message === "you're signed up!") {
       setRegisterSuccess(true);
       setRegisterFailure(false);
-      // setIsLoggedIn(true); /*FROM PROPS*/commented out to npm start the app as it created crash/error/
-      const {
-        data: { token },
-      } = registerResponse;
+      const { token } = registerResponse;
+      console.log(registerResponse);
+      console.log(token);
       const stringToken = JSON.stringify(token);
       localStorage.setItem("moveItToken", stringToken);
-    } else {
-      setRegisterSuccess(false);
-      setRegisterFailure(true);
-    }
+    }      
   };
 
   return (
@@ -55,11 +55,8 @@ const Register = (props) => {
           required
         />
         <button type="submit">Register</button>
-        {registerFailure && (
-          /*On failure, do abc. On success, do xyz*/
-          <p>Sorry, but that username already exists. Please try again.</p>
-        )}
-        {registerSuccess && <p>Welcome to Move It ${username}!</p>}
+          <p>{body.message}</p>
+        {registerSuccess && <Redirect to="/" />}
       </form>
     </div>
   );

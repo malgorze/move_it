@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
 import { loginUser } from "../api/api";
-import { useHistory } from "react-router";
+// import { useHistory } from "react-router";
 
 // Should we put Register and Login together?
 
@@ -11,8 +12,6 @@ const Login = (props) => {
   const [loginFailure, setLoginFailure] = useState(false);
   const [body, setBody] = useState({});
 
-  let history = useHistory();
-
   /* Set up useEffect in App.jsx to check for JWT in localstorage and set isLoggedIn.
  Pass isLoggedIn and setIsLoggedIn to Login as props.
  */
@@ -22,24 +21,18 @@ const Login = (props) => {
     const loginResult = await loginUser(username, password);
     setBody(loginResult);
     console.log(loginResult);
-    if (loginResult.success) {
+    if (loginResult.message === "you're logged in!") {
       setLoginSuccess(true);
       setLoginFailure(false);
-      // setIsLoggedIn(true);
-      const {
-        data: { token },
-      } = loginResult;
+      const { token } = loginResult;
       const stringToken = JSON.stringify(token);
       if (token) {
-        localStorage.setItem("MoveItToken", stringToken);
-        history.push("/home");
-        window.location.href = "/home";
-        // setIsLoggedIn(true);
-        // Any other actions once user is logged in?
-        localStorage.setItem("MoveItToken", stringToken);
-    } else {
-      setLoginSuccess(false);
-      setLoginFailure(true);
+        localStorage.setItem("moveItToken", stringToken);
+        console.log(stringToken);
+      } else {
+        setLoginSuccess(false);
+        setLoginFailure(true);
+      }
     }
   };
 
@@ -65,8 +58,7 @@ const Login = (props) => {
         />
         <button type="submit">Login</button>
         <p>{body.message}</p>
-        {loginSuccess && <p>Welcome back ${username}!</p>}
-
+        {loginSuccess && <Redirect to="/" />}
       </form>
     </div>
   );
