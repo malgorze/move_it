@@ -29,7 +29,7 @@ const Activities = (props) => {
   }
 
   if (!allRoutinesforActivity) {
-    return <div>Loading All Routines for this Activity</div>;
+    return <div>Loading All Routines for this Activity and more</div>;
   }
 
   return <div></div>;
