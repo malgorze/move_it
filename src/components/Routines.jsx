@@ -29,7 +29,7 @@ const Routines = (props) => {
       }
     }
     fetchRoutines();
-  }, []);
+  }, [token]);
 
   if (!allRoutines) {
     return <h1>Loading Routines...</h1>;

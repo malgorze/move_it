@@ -37,39 +37,39 @@ const Login = (props) => {
         // setIsLoggedIn(true);
         // Any other actions once user is logged in?
         localStorage.setItem("MoveItToken", stringToken);
-    } else {
-      setLoginSuccess(false);
-      setLoginFailure(true);
+      } else {
+        setLoginSuccess(false);
+        setLoginFailure(true);
+      }
     }
+
+    return (
+      <div className="logins">
+        <h2>Log in here:</h2>
+        <form onSubmit={loginSubmitHandler}>
+          <input
+            type="text"
+            placeholder="username"
+            onChange={(event) => {
+              event.preventDefault();
+              setUsername(event.target.value);
+            }}
+          />
+          <input
+            type="password"
+            placeholder="password"
+            onChange={(event) => {
+              event.preventDefault();
+              setPassword(event.target.value);
+            }}
+          />
+          <button type="submit">Login</button>
+          <p>{body.message}</p>
+          {loginSuccess && <p>Welcome back ${username}!</p>}
+        </form>
+      </div>
+    );
   };
-
-  return (
-    <div className="logins">
-      <h2>Log in here:</h2>
-      <form onSubmit={loginSubmitHandler}>
-        <input
-          type="text"
-          placeholder="username"
-          onChange={(event) => {
-            event.preventDefault();
-            setUsername(event.target.value);
-          }}
-        />
-        <input
-          type="password"
-          placeholder="password"
-          onChange={(event) => {
-            event.preventDefault();
-            setPassword(event.target.value);
-          }}
-        />
-        <button type="submit">Login</button>
-        <p>{body.message}</p>
-        {loginSuccess && <p>Welcome back ${username}!</p>}
-
-      </form>
-    </div>
-  );
 };
 
 export default Login;
